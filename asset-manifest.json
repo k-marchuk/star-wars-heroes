@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/star-wars-heroes/static/css/main.9b77e159.css",
-    "main.js": "/star-wars-heroes/static/js/main.37f01d67.js",
+    "main.js": "/star-wars-heroes/static/js/main.61f0bd67.js",
     "static/media/hyperspace-background.jpg": "/star-wars-heroes/static/media/hyperspace-background.3cc6bacde13f877244d6.jpg",
     "static/media/Yoda.webp": "/star-wars-heroes/static/media/Yoda.f546c161763ce68d20b1.webp",
     "index.html": "/star-wars-heroes/index.html",
     "main.9b77e159.css.map": "/star-wars-heroes/static/css/main.9b77e159.css.map",
-    "main.37f01d67.js.map": "/star-wars-heroes/static/js/main.37f01d67.js.map"
+    "main.61f0bd67.js.map": "/star-wars-heroes/static/js/main.61f0bd67.js.map"
   },
   "entrypoints": [
     "static/css/main.9b77e159.css",
-    "static/js/main.37f01d67.js"
+    "static/js/main.61f0bd67.js"
   ]
 }
