@@ -1,26 +1,45 @@
-## Available Scripts
+# Star Wars Heroes
 
-In the project directory, you can run:
+The Star Wars heroes is a web application that allows users to browse a list of Star Wars characters, as well as detailed information about films and spaceships associated with each character in the form of a graph.
 
-### `npm start`
+[DEMO LINK](https://k-marchuk.github.io/star-wars-heroes/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Technologies Used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **React**: A library for building user interfaces.
+- **React Flow**: A library for building interactive graphs.
+- **React Query**: A library for caching data.
+- **Tailwind CSS**: A CSS framework for rapid UI development.
+- **TypeScript**: For adding type safety to the application.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository:**
 
-### `npm run build`
+```
+git clone
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Start the development server:**
+
+```
+npm run dev
+```
+
+4. **To build the application for production:**
+
+```
+npm run build
+```
+
+5. **To start the production server:**
+
+```
+npm run start
+```

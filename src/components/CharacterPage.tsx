@@ -65,33 +65,28 @@ export const CharacterPage = () => {
   }
 
   return (
-    <div className="flex-1">
-      <div className="flex gap-4 flex-col md:flex-row">
-        <div className="md:w-1/6 w-full pt-20">
-          <Link
-            className="btn bg-yellow rounded-none text-gray-800"
-            to="/people"
-          >
-            Choose another character
-          </Link>
-        </div>
-        {isLoadingCharacter || isLoadingFilms || isLoadingStarships ? (
-          <div className="flex items-center justify-center w-full h-full">
-            <Loader />
-          </div>
-        ) : (
-          <div className="md:w-5/6 w-full flex-1">
-            <div className="w-full flex-1 graph-flow-height md:h-full">
-              <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                nodeTypes={nodeTypes}
-                fitView
-              ></ReactFlow>
-            </div>
-          </div>
-        )}
+    <div className="flex gap-4 flex-col md:flex-row">
+      <div className="md:w-1/6 w-full pt-20">
+        <Link className="btn bg-yellow rounded-none text-gray-800" to="/people">
+          Choose another character
+        </Link>
       </div>
+      {isLoadingCharacter || isLoadingFilms || isLoadingStarships ? (
+        <div className="flex items-center justify-center w-full h-full">
+          <Loader />
+        </div>
+      ) : (
+        <div className="md:w-5/6 w-full mt-20">
+          <div className="w-full flex-1 graph-flow-height md:h-full">
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              nodeTypes={nodeTypes}
+              fitView
+            ></ReactFlow>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
