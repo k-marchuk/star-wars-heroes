@@ -31,21 +31,25 @@ export const CharacterPage = () => {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
 
+  // Fetch character data using useQuery hook from react-query.
   const { data: character, isLoading: isLoadingCharacter } = useQuery(
     ['character', characterId],
     () => getCharacter(Number(characterId))
   );
 
+  //Fetch films data using useQuery hook.
   const { data: films, isLoading: isLoadingFilms } = useQuery(
     ['films', characterId],
     () => getFilmsByCharacterId(Number(characterId))
   );
 
+  // Fetch starships data using useQuery hook.
   const { data: starships, isLoading: isLoadingStarships } = useQuery(
     ['starships', characterId],
     () => getStarshipsByCharacterId(Number(characterId))
   );
 
+  //Fetch planet data using useQuery hook.
   const { data: planet, isLoading: isLoadingPlanet } = useQuery(
     ['planet', characterId],
     () => getPlanetByCharacterId(Number(characterId))
@@ -55,12 +59,13 @@ export const CharacterPage = () => {
     navigate(-1);
   };
 
+  // Create the nodes and edges for the graph visualization when all data is loaded.
   if (character && films && starships && !nodes.length) {
+    // Create film nodes and starship nodes.
     const filmsNodes = createFilmNodes(films);
     const starshipsNodes = createStarshipNodes(starships);
 
-    console.log(planet?.results[0].name);
-
+    //Create the main character node, positioning it at the center of the screen.
     setNodes([
       {
         id: `c${character?.id}`,
@@ -79,11 +84,11 @@ export const CharacterPage = () => {
           y: 5,
         },
       },
-      ...filmsNodes,
-      ...starshipsNodes,
+      ...filmsNodes, // Add film nodes to the graph.
+      ...starshipsNodes, //Add starship nodes to the graph.
     ]);
 
-    console.log(filmsNodes);
+    // Create edges between the character, films, and starships.
 
     const edges = createEdges(character, films, starships);
 

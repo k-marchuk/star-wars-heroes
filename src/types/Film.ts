@@ -1,6 +1,6 @@
 export interface FilmsData {
   count: number;
-  next: string;
+  next: null;
   previous: null;
   results: Film[];
 }
@@ -18,7 +18,7 @@ export type Film = {
   starships: number[];
   vehicles: number[];
   species: number[];
-  created: string;
-  edited: string;
+  created: Date;
+  edited: Date;
   url: string;
 };

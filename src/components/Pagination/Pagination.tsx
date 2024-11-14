@@ -7,10 +7,14 @@ type Props = {
 };
 
 export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
+  // Get the current URL query parameters.
   const [searchParams] = useSearchParams();
 
+  // Get the page number from the URL query parameters.
   const page = Number(searchParams.get('page')) || 1;
   const pageNumbers = [];
+
+  // Function to update the search parameters when a page link is clicked.
   const updateSearchParams = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', String(newPage));

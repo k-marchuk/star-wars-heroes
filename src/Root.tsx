@@ -1,17 +1,22 @@
-import {
-  HashRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import App from '@/App';
 import { CharactersPage } from '@/pages/CharactersPage';
 import { HomePage } from '@/pages/HomePage';
 import { CharacterPage } from '@/pages/CharacterPage';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // Caches data for 5 mins.
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export const Root = () => {
   return (
-    <Router>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
@@ -22,6 +27,6 @@ export const Root = () => {
           </Route>
         </Route>
       </Routes>
-    </Router>
+    </QueryClientProvider>
   );
 };

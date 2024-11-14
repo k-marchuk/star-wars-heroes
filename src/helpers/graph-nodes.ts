@@ -6,6 +6,12 @@ import { Starship, StarshipsData } from '@/types/Starship';
 
 export const DEFAULT_NODE_WIDTH = 300;
 
+/**
+ *Creates an array of nodes representing films.
+ *
+ * @param {FilmsData} films - The list of films to create nodes for.
+ * @returns {Array<Object>} - An array of node objects with information about each film.
+ */
 export const createFilmNodes = (films: FilmsData) => {
   return films.results.map((film, index) => ({
     id: `f${film.id}`,
@@ -22,6 +28,12 @@ export const createFilmNodes = (films: FilmsData) => {
   }));
 };
 
+/**
+ * Creates an array of nodes representing starships.
+ *
+ * @param {StarshipsData} starships - The list of starships to create nodes for.
+ * @returns  {Array<Object>} - An array of node objects with information about each starship.
+ */
 export const createStarshipNodes = (starships: StarshipsData) => {
   return starships.results.map((starship, index) => ({
     id: `s${starship.id}`,
@@ -37,6 +49,14 @@ export const createStarshipNodes = (starships: StarshipsData) => {
   }));
 };
 
+/**
+ * Creates an array of edges connecting characters to films, and films to starships.
+ *
+ * @param {Character} character - The character to connect to films and starships.
+ * @param {FilmsData} films - The list of films that the character has appeared in.
+ * @param {StarshipsData} starships - A list of starships that the hero traveled on and appeared in the movies.
+ * @returns {Array<Edge>}
+ */
 export const createEdges = (
   character: Character,
   films: FilmsData,

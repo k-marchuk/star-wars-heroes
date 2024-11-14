@@ -1,46 +1,81 @@
-import { render, screen } from '@testing-library/react';
-import { CharactersPage } from '@/pages/CharactersPage';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { render, screen, waitForElementToBeRemoved, act } from '@/test-utils';
 import { describe, it, expect } from 'vitest';
-import * as service from '@/api';
+import { Root } from '@/Root';
+import * as handlers from '@/api';
+import { Gender } from '@/types/Character';
+
+const renderOptions = { initialRoutes: ['/people'] };
 
 describe('CharactersPage component', () => {
-  const queryClient = new QueryClient();
-
-  it('should renders characters list', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <CharactersPage />
-        </Router>
-      </QueryClientProvider>
-    );
-
-    const charactersList = screen.getByTestId('characters-list');
-    expect(charactersList).toBeTruthy();
-  });
-
-  it('renders character cards for fetched data', async () => {
+  beforeEach(() => {
     const characters = {
-      count: 10,
+      count: 82,
+      next: 'https://sw-api.starnavi.io/people/?page=2',
+      previous: null,
       results: [
-        { id: 1, name: 'Luke Skywalker' },
-        { id: 2, name: 'Darth Vader' },
+        {
+          id: 10,
+          name: 'Obi-Wan Kenobi',
+          height: '182',
+          mass: '77',
+          hair_color: 'auburn, white',
+          skin_color: 'fair',
+          eye_color: 'blue-gray',
+          birth_year: '57BBY',
+          gender: Gender.Male,
+          homeworld: 20,
+          films: [1, 2, 3, 4, 5, 6],
+          species: [1],
+          vehicles: [38],
+          starships: [48, 59, 64, 65, 74],
+          created: '2014-12-10T16:16:29.192000Z' as unknown as Date,
+          edited: '2014-12-20T21:17:50.325000Z' as unknown as Date,
+          url: 'https://sw-api.starnavi.io/people/10/',
+        },
+        {
+          id: 12,
+          name: 'Wilhuff Tarkin',
+          height: '180',
+          mass: 'unknown',
+          hair_color: 'auburn, grey',
+          skin_color: 'fair',
+          eye_color: 'blue',
+          birth_year: '64BBY',
+          gender: Gender.Male,
+          homeworld: 21,
+          films: [1, 6],
+          species: [1],
+          vehicles: [],
+          starships: [],
+          created: '2014-12-10T16:26:56.138000Z' as unknown as Date,
+          edited: '2014-12-20T21:17:50.330000Z' as unknown as Date,
+          url: 'https://sw-api.starnavi.io/people/12/',
+        },
       ],
     };
 
-    const mockFetchCharacters = vi.spyOn(service, 'getCharacters');
-    mockFetchCharacters.mockReturnValue(new Promise(() => characters.results));
-
-    const { getByTestId } = render(
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <CharactersPage />{' '}
-        </Router>
-      </QueryClientProvider>
+    vi.spyOn(handlers, 'getCharacters').mockReturnValue(
+      new Promise((resolve) => setTimeout(() => resolve(characters), 1000))
     );
+  });
 
-    expect(getByTestId('characters-list').children.length).toBe(1);
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should renders characters list', async () => {
+    await act(async () => render(<Root />, renderOptions));
+
+    expect(screen.getByTestId('characters-list')).toBeTruthy();
+  });
+
+  it('renders character cards for fetched data', async () => {
+    await act(async () => render(<Root />, renderOptions));
+
+    await waitForElementToBeRemoved(document.querySelector('span.loading'), {
+      timeout: 1000,
+    }).then(() => console.log('Loading was finished'));
+
+    expect(screen.getByTestId('characters-list').children.length).toBe(2);
   });
 });

@@ -23,7 +23,9 @@ export const CharacterCard: React.FC<Props> = ({ character }) => {
         </Link>
       </figure>
       <div className="card-body flex justify-between items-center text-center p-4 md:p-5">
-        <h2 className="card-title text-yellow">{character.name}</h2>
+        <h2 data-testid="card-title" className="card-title text-yellow">
+          {character.name}
+        </h2>
         <div className="card-actions">
           <Link
             to={`${character.id}`}

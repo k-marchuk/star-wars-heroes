@@ -3,7 +3,7 @@ import image from '@/img/Yoda.webp';
 
 export const HomePage = () => {
   return (
-    <div className="text-center flex flex-col items-center pt-20">
+    <div className="text-center flex flex-col items-center pt-20 md:pt-40">
       <img src={image} alt="Star wars yoda" width="250" />
       <h1 className="text-balance font-semibold tracking-tight text-yellow sm:text-4xl md:text-5xl lg:text-7xl mt-20">
         May the Force be with you!
