@@ -12,7 +12,7 @@ import { DataType } from '../types/DataType';
 describe('createFilmNodes', () => {
   const filmsData: FilmsData = {
     count: 80,
-    next: 'string',
+    next: null,
     previous: null,
     results: [
       {
@@ -110,7 +110,7 @@ describe('create Edges', () => {
   };
   const filmsData: FilmsData = {
     count: 80,
-    next: 'string',
+    next: null,
     previous: null,
     results: [
       {

@@ -5,7 +5,7 @@ import { Loader } from '@/components/Loader/Loader';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { Pagination } from '@/components/Pagination/Pagination';
 import { CharacterCard } from '@/components/CharacterCard/CharacterCard';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const RESULTS_PER_REQUEST = 10;
 
